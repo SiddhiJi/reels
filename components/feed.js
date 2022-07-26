@@ -67,7 +67,7 @@ function Feed() {
 
         {
           posts.map((post)=>{
-            return <Post postData={post} userdata={userdata} key={uu}/>
+            return <Post postData={post} userdata={userdata} key={post}/>
           })
         }
 

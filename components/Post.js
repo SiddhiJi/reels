@@ -61,8 +61,8 @@ function Post({ postData, userdata }) {
   
 
   return (
-    <div>
-      <div className='post-container' key={oo}>
+    <div key={postData.postid}>
+      <div className='post-container' >
         {/* inner div hold current playing video */}
         <video src={postData.postUrl} onClick={handleAudio} loop></video>
         <div className='videos-info'>

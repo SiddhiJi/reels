@@ -52,7 +52,7 @@ function Profile() {
       <div className='profile-videos'>
         {
           posts.map((post)=>( //map has () as its sending html
-            <video src={post.postUrl} key={pp}/>
+            <video src={post.postUrl} key={postIds}/>
           ))
         }
         
