@@ -1,0 +1,53 @@
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    text-align: center;
+    flex-direction: row;
+}
+.login-card{
+    width: 20rem;
+    height: 30rem;
+    padding: 1rem;
+    border: 1px solid black;
+}
+.bottom-card{
+    width: 20rem;
+    padding: 1rem;
+    border: 1px solid black;
+    position: absolute;
+    top: 35rem;
+}
+
+.bg{
+    background: url('../assets/bgmob.png');
+    background-size: cover;
+    height: 590px;
+    width: 441px;
+    position: relative;
+}
+.car{
+    height: 423px;
+    width: 241px;
+    position: absolute;
+    top: 25px;
+    left: 145px;
+}
+
+@media screen and (max-width: 500px) {
+    .login-card{
+        width: 100%;
+    }
+    .bottom-card{
+        width: 100%;
+    }
+    .bg{
+        display: none;
+    }
+}
+@media screen and (max-width: 700px) {
+    .bg{
+        display: none;
+    }
+}

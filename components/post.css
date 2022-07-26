@@ -1,0 +1,30 @@
+.modal-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.video-modal-container{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.comment-modal-container{
+    width: 45%;
+    height: 100%;
+}
+.comment-modal-container>*{
+    height: 50%;
+    width: 100%;
+}
+.video-modal-container > video{
+    height: 100%;
+    width: 100%;
+}
+.card1{
+    border: 2px solid black;
+    height: 70vh;
+}

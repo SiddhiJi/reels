@@ -1,0 +1,76 @@
+.feed-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.navbar{
+    background-color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.navicons{
+    margin: 0.5rem;
+    color: black;
+}
+.navicons-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.videos-container{
+    height: 70vh;
+    /* border: 1px solid black; */
+    margin-top: 2rem;
+    border-radius: 15px;
+    overflow-y: scroll;
+    /* scrollbar-width: 0; */
+}
+.videos-container::-webkit-scrollbar{
+    display: none;
+    /* to remove scrool bar from videos-container */
+}
+.post-container{
+    height: 70vh;
+    width: 20rem;
+    margin-bottom: 2rem;
+    position: relative;
+    /* relative pos as videos info is pos absolute on this post-container */
+}
+.post-container > video{
+    /* it selects all videos inside  post-container*/
+    height: 70vh;
+    width: 20rem;
+    object-fit: contain; 
+    /* contain objectfit so that if video is large it can occupy more space without compress*/
+    background-color: bisque;
+    border-radius: 15px;
+}
+.videos-info{
+    position: absolute;
+    /* here pos absolute so make pos relative in post-container */
+    display: flex;
+    bottom: 20px;
+    justify-content: space-around;
+    width: 100%;
+}
+.avatar-container{
+    display: flex;
+    width: 70%;
+}
+.avatar-container > p{
+    margin-left: 0.7rem;
+}
+.post-like{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+@media only screen and (max-width: 500px) {
+    .navicons{
+        display: none;
+    }
+    
+}
