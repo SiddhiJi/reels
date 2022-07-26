@@ -53,7 +53,7 @@ function Comments_display({ postData }) {
             {
                 comments.map((comment) => (   //() in map as it contains html
                     
-                    <div style={{ display: 'flex', border: '1px solid white' }}>
+                    <div style={{ display: 'flex', border: '1px solid white' }} key={jo}>
                         <Avatar alt="Remy Sharp" src={comment.uProfileImg} sx={{ margin: "0.5rem" }} />
                         <p><span style={{ fontWeight: 'bold' }}>{comment.uName}</span>&nbsp;&nbsp; {comment.text}</p>
                     </div>

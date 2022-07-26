@@ -58,18 +58,11 @@ function Post({ postData, userdata }) {
     e.target.muted = !e.target.muted;
   }
 
-  const handleScroll = (e) => {
-    let next = ReactDOM.findDOMNode(e.target).parentNode.nextSibling;
-    if (next) {
-      next.scrollIntoView();
-      e.target.muted = true;
-    }
-  }
   
 
   return (
     <div>
-      <div className='post-container'>
+      <div className='post-container' key={oo}>
         {/* inner div hold current playing video */}
         <video src={postData.postUrl} onClick={handleAudio} loop></video>
         <div className='videos-info'>
@@ -94,7 +87,7 @@ function Post({ postData, userdata }) {
             >
               <div className='modal-container'>
                 <div className='video-modal-container'>
-                  <video src={postData.postUrl} muted="muted" onClick={handleAudio} autoPlay={true} loop onEnded={handleScroll}></video>
+                  <video src={postData.postUrl} muted="muted" onClick={handleAudio} autoPlay={true} loop ></video>
                 </div>
                 <div className='comment-modal-container'>
                   <Card className='card1' style={{padding:'1rem'}}>

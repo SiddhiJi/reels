@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import Upload from './Upload'
 import Avatar from '@mui/material/Avatar';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { AuthContext } from '../../context/AuthWrapper';
+import { AuthContext } from '../context/AuthWrapper';
 import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
 import Post from '../components/Post'
@@ -67,7 +67,7 @@ function Feed() {
 
         {
           posts.map((post)=>{
-            return <Post postData={post} userdata={userdata}/>
+            return <Post postData={post} userdata={userdata} key={uu}/>
           })
         }
 

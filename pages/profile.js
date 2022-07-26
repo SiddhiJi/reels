@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import ProfileComp from '../components/ProfileComp'
 import { AuthContext } from '../context/AuthWrapper';
 
-function profile() {
+function Profile() {
 
     const { user } = useContext(AuthContext);
     console.log(user);
@@ -23,4 +23,4 @@ const Redirect = ()=>{
   )
 }
 
-export default profile
+export default Profile

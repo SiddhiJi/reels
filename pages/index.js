@@ -2,8 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-import Feed from '../components/Feed'
-import Upload from '../components/Upload'
+import Feed from '../components/feed'
 import { AuthContext } from '../context/AuthWrapper'
 export default function Home() {
 
