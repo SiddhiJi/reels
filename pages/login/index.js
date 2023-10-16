@@ -4,12 +4,10 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Image from 'next/image'; //use this Image tag instead of img tag for better optimization
 import insta from '../../assets/insta.jpg';
-import { CarouselProvider, Slider, Slide, Image as Img } from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
 import bg1 from '../../assets/bg1.png'
 import bg2 from '../../assets/bg2.png'
 import bg3 from '../../assets/bg3.png'
-import { Carousel } from 'react-responsive-carousel';
+import { Carousel } from 'react-responsive-carousel';  // and importing its css inside _app.js
 import { AuthContext } from '../../context/AuthWrapper';
 import { setLogLevel } from 'firebase/app';
 import { useRouter } from 'next/router';
@@ -24,10 +22,10 @@ function Index() {
     const [error, setError] = React.useState('');
     const [loading, setloading] = React.useState(false);
 
-    const { login, user } = useContext(AuthContext);
-
-    const handleClick = async() => {
-        console.log(email,password);
+    const { login, user } = useContext(AuthContext);   //using login functionality of wall
+    console.log('login', user);
+    const handleClick = async () => {
+        console.log(email, password);
         try {
             setloading(true);
             setError('');
@@ -35,24 +33,24 @@ function Index() {
             // using asunc as it wil go to backend and usingContext i.e a feature of wall(Wrapper) made
             console.log('logged in');
         }
-        catch(err){
+        catch (err) {
             console.log('error');
             setError(err.message);
-            setTimeout(()=>{
+            setTimeout(() => {
                 setError('') //remove error from state after 2 sec.
-            },2000)
+            }, 2000)
         }
         setloading(false);
     }
 
-    useEffect(()=>{
-        if(user){
+    useEffect(() => {
+        if (user?.uid) { //if user is logged in     <<-- programmatic redirect
             router.push('/'); //goes to feed page if user is already loggedin
         }
-        else{
+        else {
             console.log("user not logged in");
         }
-    },[user])
+    }, [user])
 
     return (
         <div className='login-container'>
@@ -89,7 +87,7 @@ function Index() {
 
                     {/* js logic in {} brackets */}
                     {
-                        error != '' && <div style={{ color: 'red' }}>{error}</div> 
+                        error != '' && <div style={{ color: 'red' }}>{error}</div>
                     }
 
                     <Button variant="contained" component="span" fullWidth

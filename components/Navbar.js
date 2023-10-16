@@ -5,23 +5,18 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import Image from 'next/image';
 import insta from '../assets/insta.jpg';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
 import { AuthContext } from '../context/AuthWrapper';
-import { Router, useRouter } from 'next/router';
-import { Link } from '@mui/material';
-
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Logout'];
+import { useRouter } from 'next/router';
+import Link from 'next/link'
+import { Tooltip } from '@mui/material';
 
 const ResponsiveAppBar = ({userdata}) => { //accepting userdata from feed to show as avatar
 
@@ -48,7 +43,7 @@ const ResponsiveAppBar = ({userdata}) => { //accepting userdata from feed to sho
 
   const handleLogout = async()=>{
     await logout();
-    router.push('/login');
+    router.push('/login');  //instead in react use -> import useNavigate and use navigate('/login') and attach onCilck listener on component
   }
 
   return (
@@ -65,7 +60,7 @@ const ResponsiveAppBar = ({userdata}) => { //accepting userdata from feed to sho
             }}
           >
             <Image src={insta} height={55} width={200}></Image>
-            {/* here we can write height and wdth normally withour style={{}} as Image tag is of nect */}
+            {/* here we can write height and wdth in JSX withour style={{}} as Image tag is of next */}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
@@ -99,7 +94,11 @@ const ResponsiveAppBar = ({userdata}) => { //accepting userdata from feed to sho
 
 {/* to make only 1 func when onClick we use onClick={handleCloseUserMenu}, to make more than 1 func. to execute we use arrow func. */}
               <MenuItem onClick={handleCloseUserMenu}>
-                <Link href="/profile"><Typography textAlign="center">Profile</Typography></Link>
+                <Link href="/profile">
+                  <Typography textAlign="center">Profile</Typography>
+                </Link>
+                {/* //in React import useNavigate from react-router-dom and call it and store it in var history then use history('/profile') */}
+
               </MenuItem>
               <MenuItem onClick={()=>{
                 handleLogout()

@@ -24,7 +24,7 @@ function Index() {
     const [error, setError] = React.useState('');
     const [loading, setloading] = React.useState(false);
 
-    const { forgot, user } = useContext(AuthContext);
+    const { forgot } = useContext(AuthContext);
 
     const handleClick = async() => {
         console.log(email,password);
@@ -34,6 +34,7 @@ function Index() {
             await forgot(email);
             // using asunc as it wil go to backend and usingContext i.e a feature of wall(Wrapper) made
             console.log('Email sent');
+            router.push('/');
         }
         catch(err){
             console.log('error');
@@ -44,15 +45,6 @@ function Index() {
         }
         setloading(false);
     }
-
-    useEffect(()=>{
-        if(user){
-            router.push('/'); //goes to feed page if user is already loggedin
-        }
-        else{
-            console.log("user not logged in");
-        }
-    },[user])
 
     return (
         <div className='login-container'>

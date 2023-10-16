@@ -10,10 +10,12 @@ const {user} = useContext(AuthContext)
 
 const Redirect = ()=>{
   const router = useRouter();
+  
   router.push('/login');
+
   return null;
 }
-
+console.log('here',user);
   return (
     <div>
       <Head>
@@ -22,6 +24,7 @@ const Redirect = ()=>{
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {
+        
         user?.uid ?<Feed/> : <Redirect/>
       }
       

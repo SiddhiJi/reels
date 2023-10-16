@@ -9,20 +9,21 @@ import { db } from '../firebase';
 import Post from '../components/Post'
 function Feed() {
 
-  const {user} = useContext(AuthContext);
+  const {user} = useContext(AuthContext);  //brigning user from wall
+  console.log('feed',user.uid);
   const[userdata,setUserData] = useState({});
   const [posts, setPosts] = useState([]);
 
   useEffect(()=>{
-    console.log(user.uid);
-    const unsub = onSnapshot(doc(db, "users", user.uid), (doc)=>{   //onSnapshot or setUser
+    console.log("oo",user.uid);
+    const unsub = onSnapshot(doc(db, "users", user.uid), (doc)=>{   //onSnapshot or getDoc
       console.log(":))))",doc.data());
       setUserData(doc.data());
     })
     return ()=>{
       unsub(); //clean up
     }
-  },[user]) //when user state will change this useEffect will run twice
+  },[user]) //when user state will change this useEffect will run as Mount as well as Update
 
   useEffect(()=>{
     const unsub = onSnapshot(query(collection(db, "posts"),orderBy("timeStamp","desc")), (snapshot)=>{   //onSnapshot or setUser

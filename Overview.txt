@@ -1,0 +1,143 @@
+in react.js -> npx create-react-app reels
+in next.js -> npx create-next-app reels
+
+NEXT.JS -> REACT FRAMEWORK FOR PRODUCTION
+
+To start server-:
+in react.js -> cd reels  npm start
+in next.js -> code reels(pops up to new vs code window)  npm run dev
+
+BENEFITS -:
+for PRODUCTION & INCREASED SEO & SERVER-SIDE RENDERING -> so optimization increased
+if site is rendered on server(server-side rendering), then its 
+Basically, in react.js server gives whole bundle of scripts, and page is rendered(or create into HTML pages) on client machine,
+now NEXT.JS creates html pages on server and if client requests server it serves the pages directly, so SEO increases as crawler(of 
+Google, Bing and Yahoo) see the pages so SEO improve.
+And after going to client no heavy tasks are performed(of rendering), so site becomes fast and site can run on low specs device, as
+server resources are used in rendering.
+
+FILE BASED ROUTING(every component in pages directory becomes a route) -: & FAST REFRESH(fast, reliable live-editing experience) 
+in next.js instead of src folder there will be pages folder
+index.js runs as html first in pages folder, and files created inside pages folder, is directly made routing by next.js
+
+index.js itself handles routing and its not necessary to keep every things in src folder we can keep anywhere in next.js like here assets
+, not create in pages folder as it would create route of it also
+
+IMAGE OPTIMIZATION(with instant builds) -> for this made a tag for image i.e <IMAGE/>, so that keep in optimized way
+                                        -> import Image from 'next/image'
+
+create signup folder and inside it make index.js file similar for login
+
+create a signup.css inside pages folder and RULE -> dont forget to import in _app.js similar for login make login.css
+
+Mui -> npm i @mui/material @emotion/react @emotion/styled
+    -> to see props on tags of mui goto bottom and see api section 
+    -> variant has 3 options = variant="contained" or "filled" or "outlined"
+to add carousel(slider) inside mobile we use react reponsive carousel see on google and install its npm and use by refering syntax
+
+then make components folder inside it make feed.js , componets folder is made outside pages as to save it from direct access with login
+
+pasting code of navbar from mui -> app bar and installin npm i @mui/icons-material to enable icons used in mui code and removing 
+home_module.css and removing fro index.js also
+
+import all css in _app.js -> like of feed.css , post.css , profile.css
+
+navbar -: 1. add home and explore icon import from mui to navbar and add its imported tag
+             in navbar.js with props like fontSize and for more css add className
+
+
+There is Backend -> Server, DB, storage (connected with each other)     and Frontend -> React
+Firebase -> by Google        and        Amplify -> by Amazon           -----> Backend as a Service
+Usecase -: Used with frameworks & library.
+Some services of firebase - Cloud Firestore, Cloud Functions, Authentication, storage, Hosting anad many advances like Analytics, Predictions
+1) Authentication -> signup, login and ProtectRoute(access some pages only if logged in)
+2) Hosting -> deploy your site, which can be accessed by a link.
+3) Cloud Firestore -> Database (like mongodb) -> stores coolection of data
+4) Storage -> to store heavy assets like image, videos, etc
+
+firebase -: Authentication service -< use getAuth(), getStorage() and getFirestore()  and export them by 
+import {getAuth} from 'firebase/auth'
+import {getStorage} from 'firebase/storage'
+import {getFirestore} from 'firebase/firestore'
+
+            login and signup 
+            feed, profile pages -> only to be shown to logged in persons
+
+            like to go in feed , first it will check if person is logged in or not, simialr for profile, so its like wall around these pages of check
+            so instead of drawing wall around every page we make a wall inside which every page lies.
+            So this wall in next or react is called context. thats why we make folder of context, inside which it has auth.js file.
+            func. used in authWrapper is from Firebase Docs, i.e https://firebase.google.com/docs/auth/web/password-auth
+
+            Outermost file that run is _app.js then index.js , so we import wall in _app.js by wrapping our app component by AuthWrapper.
+
+            wall is wrapper and context is to add feature on the wall
+
+Basically in _app.js AuthWrapper acts a wall which has component(our app) inside it as children.
+So AuthWrapper.js is executed where initially loading is true in return part and then useEffect(as componentDidMount) checks in backend if user was
+logged in, if yes it sets user state else not set it and makes loading false.(this uses concept of caching behind scene, which is stored for particular website in our
+browser and when req. is sent to server then these cache also goes with it).
+So when loading becomes false then children(index.js) is executed which directs to feed page when user state has user else redirect to login page.
+
+Sign up work -:
+
+Users -> 1)(FIRESTORE) Data-:Email, password, full name, link of first page       2)(STORAGE) Assets-:Profile Image
+
+1. accept all inputs(email, password, full name)
+2. upload click -> storage(enale in test-mode from firebase build section) -> image -> link of image
+                |-> details in firestore
+
+add this fire storage code taken from firebase upload file , after signup folder-> index.js when in try block its signed up successfully to store
+uploaded image from sign up image
+
+Firstly, we'll state of email, password, name, file, loading(for button disabled) and set this stataes acc. to user input by value and 
+onChange() in TextField and add handleClick() on Signup button.
+
+
+Profile -:
+we will make a file in component of profile as we want only to loggedin users to see this page
+
+
+Note -> here we are making folders in pages file so that when they are routed their index.js can run which is inside that folders 
+        if only localhost:3000 runs it runs index.js file directly inside pages folder
+        and to run any other file directly inside pages folder we name that file with diff. name rather than index.js and use routing link
+
+firestore -: create project in test mode and use func. setDoc in signup->index.js
+
+
+
+For deployment -: 1. make strict false in next.cnfig.js  2. then run npm run build and make repo on git
+
+
+setDoc sets content on db. For dynamic wenpages we will getDoc() stored in db.
+
+to make your own id run npm i uuid
+
+
+
+MUI -: Material UI - Overview
+Material UI is a library of React UI components that implements Google's Material Design.
+
+Introduction
+
+Material UI is an open-source React component library that implements Google's Material Design.
+
+It includes a comprehensive collection of prebuilt components that are ready for use in production right out of the box.
+
+Material UI is beautiful by design and features a suite of customization options that make it easy to implement your own custom design system on top of our components.
+
+Material UI v5 supports Material Design v2. Adoption of v3 is tentatively planned for Material UI v6—see the release schedule. You can follow this GitHub issue for future updates.
+
+Advantages of Material UI
+
+Ship faster: Over 2,500 open-source contributors have poured countless hours into these components. Focus on your core business logic instead of reinventing the wheel—we've got your UI covered.
+Beautiful by default: we're meticulous about our implementation of Material Design, ensuring that every Material UI component meets the highest standards of form and function, but diverge from the official spec where necessary to provide multiple great options.
+Customizability: the library includes an extensive set of intuitive customizability features. The templates in our store demonstrate how far you can go with customization.
+Cross-team collaboration: Material UI's intuitive developer experience reduces the barrier to entry for back-end developers and less technical designers, empowering teams to collaborate more effectively. The design kits streamline your workflow and boost consistency between designers and developers.
+Trusted by thousands of organizations: Material UI has the largest UI community in the React ecosystem. It's almost as old as React itself—its history stretches back to 2014—and we're in this for the long haul. You can count on the community's support for years to come (e.g. Stack Overflow).
+Material UI vs. Base UI
+
+Material UI and Base UI feature many of the same UI components, but Base UI comes without any default styles or styling solutions.
+
+Material UI is comprehensive in that it comes packaged with default styles, and is optimized to work with Emotion (or styled-components).
+
+Base UI, by contrast, could be considered the "skeletal" or "headless" counterpart to Material UI—in fact, future versions of Material UI will use Base UI components and hooks for its foundational structure.

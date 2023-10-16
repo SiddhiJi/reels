@@ -3,15 +3,16 @@ import React, { useEffect } from 'react'
 import {createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut} from 'firebase/auth'
 import {auth} from '../firebase'
 
-export const AuthContext = React.createContext();
+export const AuthContext = React.createContext(); // provides features on the wall
 function AuthWrapper({children}) {
     // console.log("hello from wall");
 
     const[user, setUser] = React.useState('');
-    const[loading, setLoading] = React.useState(true);   //if looged in before sometime
+    const[loading, setLoading] = React.useState(true);   //if logged in before sometime
 
     useEffect(()=>{
-      onAuthStateChanged(auth, (user)=>{
+      onAuthStateChanged(auth, (user)=>{  //it tells if any user id is logged in or not by checking in backend which is with Google(server)
+        //if logged in prev. then it gets user and sets it in state else not set it is user state.
         if(user){ //means user is logged in
           setUser(user);
         }
@@ -24,10 +25,13 @@ function AuthWrapper({children}) {
 
     function login(email, password)
     {
+        // setUser(user); it is done by onAuthStateChanged() itself when auth is changed inside login,logout,forgot,signup so it also sets user
+        //state with user if sign in else user state with null if sign out
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     function logout(){
+      //setUser('') is itself set by onAuthStateChanged().
       return signOut(auth);
     }
 
@@ -43,10 +47,12 @@ function AuthWrapper({children}) {
     const store = {
         login,
         user,
+        loading,
         logout,
         forgot,
         signup
     }
+    // console.log('booommmm');
 
   return (
     <AuthContext.Provider value={store}>

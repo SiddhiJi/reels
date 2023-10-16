@@ -21,7 +21,7 @@ function Index() {
   const [error, setError] = React.useState('');
   const [loading, setloading] = React.useState(false);
 
-  const { signup, user } = useContext(AuthContext);
+  const { signup, user } = useContext(AuthContext); //as this time we need signup function
 
   const handleClick = async () => {
     console.log("iiiiii",email, password, name, file);
@@ -33,6 +33,7 @@ function Index() {
       // using asunc as it wil go to backend and usingContext i.e a feature of wall(Wrapper) made
       console.log('signed up');
 //further code in try block taken from https://firebase.google.com/docs/storage/web/upload-files site to store uploaded image
+//just changing storageRef path of saving image
       const storageRef = ref(storage, `${user.user.uid}/profilePic`);
       // storageref stores location in which file will be store
 
@@ -59,7 +60,7 @@ function Index() {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             console.log('File available at', downloadURL);
             //making obj of entered data by user so that we can use this info futher
-            //in our pages like uploaded photo and name in profile page
+            //in our pages like uploaded photo and name in profile page and we are storing thid data inside firestore
             let obj = {
               name: name,
               email: email,
@@ -67,7 +68,7 @@ function Index() {
               photourl: downloadURL,
               posts:[]
             }
-            await setDoc(doc(db, "users", user.user.uid), obj);
+            await setDoc(doc(db, "users", user.user.uid), obj);  //db_name , collection_name , doc_name(which is  uid)
             console.log('document added');
           });
         }
@@ -84,6 +85,8 @@ function Index() {
     setloading(false);
   }
 
+  //after signup is clicked handleClick() is executed which calls signup() which sets user state with user by onAuthStateChanged() 
+  //and then this useEffect is run which directs to '/' or feed page.
   useEffect(() => {
     if (user) {
       router.push('/'); //goes to feed page if user is already loggedin

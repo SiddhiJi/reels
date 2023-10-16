@@ -14,6 +14,7 @@ function Upload({ userdata }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [progress, setProgress] = useState(0);
+    console.log(userdata);
 
     const handleChange = (e)=>{
         const file = e.target.files[0]; //will give selected file
@@ -93,23 +94,21 @@ function Upload({ userdata }) {
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-            {
-                error != '' ? <Alert severity="error">{error}</Alert> :
-                    <Button variant="outlined" startIcon={<LocalMoviesIcon />} component="label"
-                        style={{ marginTop: '1rem' }}>
-                        {/* if component is label of button tag it takes input , if span it not takes
-                            inline css attr in camel case here and in react while in css it was separated by - */}
-                        Upload
-                        <input hidden accept="video/*" multiple type="file" onChange={handleChange}/>
-                        {/* hidden prop to hide choose files options */}
-                    </Button>
-            }
+      <div className="upload-btn">
+      {
+          error != '' ?
+              <Alert severity="error">{error}</Alert> :
+              <Button variant="outlined" fullWidth component="label" startIcon={<LocalMoviesIcon />} style={{ marginTop: '1rem' }}>
+                  <input type="file" accept="video/*" style={{ display: 'none' }} onChange={handleChange} />
+                  Upload
+              </Button>
 
-            {
-                loading == true ? <LinearProgress variant="determinate" value={progress} style={{ color: 'blue' }} /> : <div/>
-            }
-        </div>
+      }
+      {
+          loading &&
+          <LinearProgress variant="determinate" value={progress} style={{ marginTop: "0.2rem" }} />
+      }
+  </div>
     )
 }
 

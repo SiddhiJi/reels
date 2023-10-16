@@ -1,6 +1,6 @@
 import { Avatar } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { AuthContext } from '../context/AuthWrapper';
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -64,20 +64,22 @@ function Post({ postData, userdata }) {
     <div key={postData.postid}>
       <div className='post-container' >
         {/* inner div hold current playing video */}
-        <video src={postData.postUrl} onClick={handleAudio} loop></video>
+        <video src={postData.postUrl} style={{width:'100%'}} onClick={handleAudio} loop></video>
         <div className='videos-info'>
           {/*  2 div for name and like*/}
           <div className='avatar-container'>
             {/* avatar  =copied from navnar.js */}
-            <Avatar alt="Remy Sharp" src={postData.profileUrl} sx={{ margin: "0.5rem" }} />
-            <p>{postData.profileName}</p>
+            <Avatar alt="Remy Sharp" src={postData.profileUrl} style={{marginLeft:'26px'}} sx={{ margin: "0.5rem" }} />
+            <p style={{color: 'white', fontWeight:'bold', marginLeft:'10px'}}>{postData.profileName}</p>
           </div>
           <div className='post-like'>
-            <FavoriteBorderIcon fontSize='large' style={like ?
-              { color: "red" } : { color: "white" }} onClick={handleLike} />
+            <FavoriteIcon fontSize='large' style={like ?
+              { color: "red",marginRight: '18px' } : { color: "white",marginRight: '2px' }} onClick={handleLike} />
+            <div style={{marginRight:'18px'}}>
             {postData.likes.length > 0 && postData.likes.length}
+            </div>
 
-            <ChatIcon style={{ color: "black" }} onClick={() => handleClickOpen(postData.postid)} />
+            <ChatIcon style={{ color: "black",marginRight: '18px' }} onClick={() => handleClickOpen(postData.postid)} />
             <Dialog
               open={open == postData.postid}
               onClose={handleClose}
